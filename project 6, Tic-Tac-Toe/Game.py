@@ -1,3 +1,3 @@
 import random
-import nympy as np
+import numpy as np
 # code for the game
