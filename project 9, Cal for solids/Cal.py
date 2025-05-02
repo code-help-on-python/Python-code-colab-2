@@ -11,90 +11,89 @@ class InfoFinder:
         else:
             radius = r
         pi = self.pi
-        circumfernce = 2 * pi * radius
+        circumference = 2 * pi * radius
         area = 4 * (pi * (radius ** 2))
-        volume = 4/3 * (pi * (radius ** 3))
+        volume = (4 / 3) * (pi * (radius ** 3))
         return f"""
-Circumference : {round(circumfernce)}
-Area : {round(area)}
-volume : {round(volume)}
+Circumference: {round(circumference)}
+Area: {round(area)}
+Volume: {round(volume)}
 """
 
     def cube(self, side_length):
         a = side_length
         area = (a * a) * 6
         area_side = a ** 2
-        volume = (a ** 3)
+        volume = a ** 3
         return f"""
-Area of side : {area_side}
-Total area = {area}
-Volume = {volume}
-        """
+Area of side: {area_side}
+Total area: {area}
+Volume: {volume}
+"""
 
     def cuboid(self, l, b, h):
         area_base = l * b
-        vloume = area_base * h
+        volume = area_base * h
         return f"""
-Base area : {area_base}
-Volume : {vloume}
-        """
+Base area: {area_base}
+Volume: {volume}
+"""
 
     def cylinder(self, h, r=None, d=None):
         pi = self.pi
-        hight = h
+        height = h
         if r is None:
             radius = d / 2
         else:
             radius = r
 
-        area_curcle = round((pi * (radius ** 2)))
-        area_curved_serface = (round((2 * pi * radius)) * hight)
-        volume = area_curcle * hight
+        area_circle = round(pi * (radius ** 2))
+        area_curved_surface = round((2 * pi * radius) * height)
+        volume = area_circle * height
 
         return f"""
-Area of circulor base : {area_curcle}
-Area of curved serface : {area_curved_serface}
-Totel area : {area_curcle + area_curved_serface}
-Volume : {volume}
-        """
+Area of circular base: {area_circle}
+Area of curved surface: {area_curved_surface}
+Total area: {area_circle + area_curved_surface}
+Volume: {volume}
+"""
 
-    def squer_pyramid(self, a, h):
-        a = a
-        h = h
+    def square_pyramid(self, a, h):
         square_area = a ** 2
-        trangle_area = (a * h) / 2
-        area_total = (a ** 2) + 2 * a * math.sqrt((((a * a) / 4) + (h * h)))
-        volume = (a * a) * (h / 3)
+        triangle_area = (a * h) / 2
+        total_area = square_area + 2 * a * math.sqrt((((a ** 2) / 4) + (h ** 2)))
+        volume = square_area * (h / 3)
         return f"""
-Area of square base : {square_area}
-Area of trangulor side : {trangle_area}
-Total area : {area_total}
-Volume : {volume}
-        """
+Base area (square): {square_area}
+Area of triangular side: {triangle_area}
+Total area: {total_area}
+Volume: {volume}
+"""
 
-    def corn(self, r, l, h):
+    def cone(self, r, l, h):
         pi = self.pi
         radius = r
-        slant_hight = l
-        circle_area = pi * radius * radius
-        curved_area = pi * radius * slant_hight
-        volume = ((pi * radius * radius) * h) / 3
+        slant_height = l
+        circle_area = pi * (radius ** 2)
+        curved_surface_area = pi * radius * slant_height
+        volume = (circle_area * h) / 3
         return f"""
-Area of cuirculor part : {circle_area}
-Area of curved serface : {curved_area}
-Total area : {circle_area + curved_area}
-Volume : {volume}
-        """
+Base area (circle): {circle_area}
+Curved surface area: {curved_surface_area}
+Total area: {circle_area + curved_surface_area}
+Volume: {volume}
+"""
 
 
 if __name__ == "__main__":
     algo = InfoFinder()
     while True:
-        a = input('What is the solid you need help with (Sphere-s, Cude-c, Cuboid-cu, Corn-co, Cylinder-cy, Pyramid-p) exit to exit?\n').lower()
+        a = input("What solid do you need help with (Sphere-s, Cube-c, Cuboid-cu, Cone-co, Cylinder-cy, Pyramid-p)? Type 'exit' to exit:\n").lower()
         if a == 'exit':
-            print('Bye, hope you coe bac again:)!!')
+            print('Bye, hope you come back again! :)')
+            break
         if a == 's':
-            d_r = input('Radius-r or Diameter-d').lower()
+            d_r = input('Type "r" for radius or "d" for diameter: ').lower()
             if d_r == 'r':
                 r = float(input('What is the radius?\n'))
                 print(algo.sphere(r=r))
@@ -102,41 +101,31 @@ if __name__ == "__main__":
                 d = float(input('What is the diameter?\n'))
                 print(algo.sphere(d=d))
             else:
-                print('Please use short form...')
+                print('Please use the correct short form...')
                 continue
         elif a == 'c':
-            a = float(input('What is the lenght of a side?\n'))
-            algo.cube(a)
+            side = float(input('What is the length of a side?\n'))
+            print(algo.cube(side))
         elif a == 'cu':
-            l, b, h = input('What is the lenght, beadth and hight(separate by coma)?\n').strip(' ').split(',')
-            s = [float(i) for i in [l, b, h]]
-            l, b, h = s
-            print(algo.cuboid(l, b , h))
+            l, b, h = map(float, input('Enter the length, breadth, and height (separated by commas):\n').split(','))
+            print(algo.cuboid(l, b, h))
         elif a == 'co':
-            r, l, h = input('What is the radius, slant lenght and higth(separate by coma)?\n').strip(' ').split(',')
-            s = [float(i) for i in [r, l, h]]
-            r, l, h = s
-            algo.corn(r, l, h)
+            r, l, h = map(float, input('Enter the radius, slant height, and height (separated by commas):\n').split(','))
+            print(algo.cone(r, l, h))
         elif a == 'cy':
-            d_r = input('Radius-r or Diameter-d').lower()
+            d_r = input('Type "r" for radius or "d" for diameter: ').lower()
             if d_r == 'r':
-                r, h = input('What is the radius and hight(separate by coma)? \n').strip(' ').split(',')
-                s = [float(i) for i in [r, h]]
-                r, h = s
+                r, h = map(float, input('Enter the radius and height (separated by commas):\n').split(','))
                 print(algo.cylinder(h, r))
             elif d_r == 'd':
-                d, h = input('What is the diameter and hight(separate by coma)?\n').strip(' ').split(',')
-                s = [float(i) for i in [d, h]]
-                d, h = s
+                d, h = map(float, input('Enter the diameter and height (separated by commas):\n').split(','))
                 print(algo.cylinder(h, d=d))
             else:
-                print('Please use short form...')
+                print('Please use the correct short form...')
                 continue
         elif a == 'p':
-            a, h = input('What is the lenght of the base and the hight(separate by coma)?\n')
-            s = [float(i) for i in [a, h]]
-            a, h = s
-            print(algo.squer_pyramid(a, h))
+            a, h = map(float, input('Enter the base length and height (separated by commas):\n').split(','))
+            print(algo.square_pyramid(a, h))
         else:
-            print('Use the short forms...')
+            print('Please use the correct short forms...')
             continue
