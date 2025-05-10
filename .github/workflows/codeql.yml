@@ -32,7 +32,7 @@ jobs:
             build-mode: none
             os: ubuntu-latest
           - language: swift
-            build-mode: none
+            build-mode: autobuild # Updated from 'none' to 'autobuild'
             os: macos-latest
 
     steps:
